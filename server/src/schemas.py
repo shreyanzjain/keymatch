@@ -8,12 +8,25 @@ class JobBase(BaseModel):
     company: str
 
 class JobCreate(JobBase):
-    createdAt: datetime
+    pass
+
+class KeywordBase(BaseModel):
+    keyword: str
+
+class KeywordCreate(KeywordBase):
+    job_id: int
+
+class Keyword(KeywordBase):
+    id: int
+    job_id: int
+
+    class Config:
+        from_attributes = True
 
 class Job(JobBase):
     id: int
-    created_at: str
-    keywords: List[str]
+    created_at: datetime
+    keywords: List[Keyword] = []
 
     class Config:
         from_attributes = True

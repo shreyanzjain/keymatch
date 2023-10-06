@@ -9,6 +9,7 @@ class Job(Base):
     id = Column(Integer, primary_key=True, index=True)
     title = Column(String(255))
     description = Column(Text)
+    company = Column(Text)
     created_at = Column(Date, default=datetime.utcnow)
 
     keywords = relationship("Keywords", back_populates="job", cascade="all, delete")

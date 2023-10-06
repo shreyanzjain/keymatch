@@ -1,8 +1,14 @@
-# Ignore virtual environment
+# virtual environment
 venv
 
-# Ignore .env
+# .env
 .env
 
-# Ignore __pycache__ folders
+# __pycache__ folders
 __pycache__
+
+# Static files
+static
+
+# database
+*.sqlite
