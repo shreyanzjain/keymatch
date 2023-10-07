@@ -50,3 +50,7 @@ def upload_resume(file: UploadFile):
 @app.get('/api/read/{jobId}/keywords')
 def get_keywords_by_job_id(jobId: int, db: Session = Depends(get_db)):
     return keyword_methods.get_keywords_by_job_id(jobId, db)
+
+@app.get('/api/read/keywords')
+def get_all_keywords(db: Session = Depends(get_db)):
+    return keyword_methods.get_all_keywords(db)
