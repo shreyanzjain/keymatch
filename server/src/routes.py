@@ -2,17 +2,10 @@ from main import app, get_db
 from typing import List
 from fastapi import UploadFile, HTTPException, Depends
 from sqlalchemy.orm import Session
-from src import schemas
+from src import schemas, responses
 from src.methods import job_methods, keyword_methods
 
-@app.post('/api/create/job', response_model=schemas.Job, responses={
-    200: {
-        "description": "Successful"
-    },
-    404: {
-        "description": "Resume Not Found"
-    }
-})
+@app.post('/api/create/job', response_model=schemas.Job, responses = responses.CREATE_JOB)
 def create_job(job: schemas.JobCreate, db: Session = Depends(get_db)):
     return job_methods.add_job(job, db)
 
@@ -20,24 +13,12 @@ def create_job(job: schemas.JobCreate, db: Session = Depends(get_db)):
 def read_jobs(db: Session = Depends(get_db)):
     return job_methods.get_all_jobs(db)
 
-@app.delete('/api/delete/job/{jobId}', 
-            responses={
-                200: {
-                    "description": "Successful"
-                },
-                404: {
-                    "description": "No Job Found"
-                }
-            })
+@app.delete('/api/delete/job/{jobId}', responses = responses.DELETE_JOB)
 def delete_job(jobId: int, db: Session = Depends(get_db)):
     response = job_methods.delete_job(jobId, db)
     return response
 
-@app.put('/api/upload/resume', 
-         responses={200: {"description": "Successfully uploaded resume"}, 
-                    415: {"description": "Unsupported Filetype"}
-                    })
-
+@app.put('/api/upload/resume', responses = responses.UPLOAD_RESUME)
 def upload_resume(file: UploadFile):
     if file.content_type != "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
         raise HTTPException(415, "Unsupported filetype. Only '.docx' files are accepted!")  

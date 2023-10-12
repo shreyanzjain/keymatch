@@ -4,8 +4,7 @@ from src.database import SessionLocal, engine
 from src import models
 
 import nltk
-nltk.download('stopwords', './static')
-nltk.download('punkt', './static')
+nltk.data.path.insert(0, './static')
 
 models.Base.metadata.create_all(bind=engine)
 
