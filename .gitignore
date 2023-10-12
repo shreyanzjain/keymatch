@@ -7,7 +7,7 @@ venv
 # __pycache__ folders
 __pycache__
 
-# Static files
+# Static files -> create a folder named 'static' in ./server
 static
 
 # database
