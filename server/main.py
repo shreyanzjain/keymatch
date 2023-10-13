@@ -1,5 +1,5 @@
-from fastapi import FastAPI, Depends
-from typing import List
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from src.database import SessionLocal, engine
 from src import models
 
@@ -17,4 +17,13 @@ def get_db():
         db.close()
 
 app = FastAPI()
+
+# wildcard cors setup
+origins = ["*"]
+app.add_middleware(CORSMiddleware, 
+                   allow_origins=origins,
+                   allow_credentials=True,
+                   allow_methods=["*"],
+                   allow_headers=["*"])
+
 import src.routes
