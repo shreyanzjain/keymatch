@@ -204,7 +204,7 @@ class UploadJobs extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           const Text(
-            'Uplaod Jobs',
+            'Upload Jobs',
             style: TextStyle(
               fontSize: 40.0,
               color: Colors.black,
