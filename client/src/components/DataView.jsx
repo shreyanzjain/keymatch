@@ -1,5 +1,20 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
+
 function DataView() {
-  const data = [{}];
+  const [data, setData] = useState(null);
+
+  async function getData() {
+    const resp = await axios.get("http://127.0.0.1:8000/api/read/jobs");
+    return resp.data;
+  }
+
+  useEffect(() => {
+    getData().then((data) => setData(data));
+  }, []);
+
+  console.log(data);
+
   return (
     <div className="h-screen w-full">
       <div className="flex h-full w-full pb-2 items-center justify-center">
