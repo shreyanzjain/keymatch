@@ -36,7 +36,8 @@ def update_job():
     pass
 
 def get_all_jobs(db: Session):
-    return db.query(models.Job).all()
+    jobs = db.query(models.Job).all()
+    return jobs
     
 
 # def extract_keywords(desc: str, jobId: int, db: Session):
