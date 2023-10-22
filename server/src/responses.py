@@ -8,7 +8,7 @@ DELETE_JOB = {
 }
 
 UPLOAD_RESUME = {
-    200: {
+    201: {
         "description": "Successfully uploaded resume"
     }, 
     415: {
@@ -17,7 +17,7 @@ UPLOAD_RESUME = {
 }
 
 CREATE_JOB = {
-    200: {
+    201: {
         "description": "Successful"
     },
     404: {

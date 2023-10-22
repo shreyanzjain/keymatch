@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-from fastapi import HTTPException
+from fastapi import HTTPException, status
 from src import schemas, models
 from rake_nltk import Rake
 import docx2txt as dxt
@@ -20,7 +20,7 @@ def add_job(job: schemas.JobCreate, db: Session):
         db.commit()
         db.refresh(new_job)
         extract_common_keywords(new_job.id, new_job.description, resume_text, db)
-        return new_job
+        return
     
 
 def delete_job(jobId: int, db: Session):
@@ -37,7 +37,13 @@ def update_job():
 
 def get_all_jobs(db: Session):
     jobs = db.query(models.Job).all()
-    return jobs
+    jobs_list = []
+    for job in jobs:
+        keywords = [keyword[0] for keyword in db.query(models.Keywords.keyword).filter(models.Keywords.job_id == job.id)]
+        tmp_job = schemas.Job(**job.__dict__)
+        tmp_job.keywords = keywords
+        jobs_list.append(tmp_job)
+    return jobs_list
     
 
 # def extract_keywords(desc: str, jobId: int, db: Session):

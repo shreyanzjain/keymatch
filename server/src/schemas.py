@@ -26,7 +26,14 @@ class Keyword(KeywordBase):
 class Job(JobBase):
     id: int
     created_at: datetime
-    keywords: List[KeywordBase] = []
+    keywords: List[str] = []
+
+    class Config:
+        from_attributes = True
+
+class JobKeywords(BaseModel):
+    job_id: int
+    keywords: List[str]
 
     class Config:
         from_attributes = True

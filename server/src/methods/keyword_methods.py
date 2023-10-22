@@ -5,7 +5,7 @@ from src import schemas, models
 
 def get_keywords_by_job_id(job_id: int, db: Session):
     keywords = db.query(models.Keywords.keyword).filter(models.Keywords.job_id == job_id).all()
-    return [keyword for (keyword,) in keywords]
+    return [keyword[0] for keyword in keywords]
 
 def get_all_keywords(db: Session):
     jobs = job_methods.get_all_jobs(db)

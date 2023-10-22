@@ -5,7 +5,7 @@ from sqlalchemy.orm import Session
 from src import schemas, responses
 from src.methods import job_methods, keyword_methods
 
-@app.post('/api/create/job', response_model=schemas.Job, responses = responses.CREATE_JOB)
+@app.post('/api/create/job', responses = responses.CREATE_JOB, status_code=201)
 def create_job(job: schemas.JobCreate, db: Session = Depends(get_db)):
     return job_methods.add_job(job, db)
 
@@ -28,10 +28,10 @@ def upload_resume(file: UploadFile):
             new_file.write(file.file.read())
         return f"Upload successful, file stored at {file_location}"
 
-@app.get('/api/read/{jobId}/keywords')
+@app.get('/api/read/{jobId}/keywords', response_model=List[str])
 def get_keywords_by_job_id(jobId: int, db: Session = Depends(get_db)):
     return keyword_methods.get_keywords_by_job_id(jobId, db)
 
-@app.get('/api/read/keywords')
+@app.get('/api/read/keywords', response_model=List[schemas.JobKeywords])
 def get_all_keywords(db: Session = Depends(get_db)):
     return keyword_methods.get_all_keywords(db)
