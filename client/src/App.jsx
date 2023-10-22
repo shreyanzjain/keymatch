@@ -1,14 +1,23 @@
-import NavBar from "./components/NavBar";
+import UserView from "./components/UserView";
+import FormView from "./components/FormView";
 import UploadResume from "./components/UploadResume";
-import DataView from "./components/DataView";
 import "tailwindcss/tailwind.css";
+import { Route, Routes } from "react-router-dom";
+import JobsView from "./components/JobsView";
 
 function App() {
   return (
     <div className="bg-slate-300">
-      <NavBar />
-      <UploadResume />
-      <DataView />
+      <Routes>
+        <Route path="/" element={<UserView/>}>
+          <Route index element={<UploadResume/>}/>
+          <Route path="resume" element={<UploadResume/>}/>
+          <Route path="jobs">
+            <Route index element={<JobsView/>}/>
+            <Route path="create" element={<FormView/>}/>
+          </Route>
+        </Route>
+      </Routes>
     </div>
   );
 }

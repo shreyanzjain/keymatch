@@ -1,8 +1,7 @@
 function UploadResume() {
   return (
-    <div className="w-full h-20 px-2">
-      <div className="flex h-full w-full items-center justify-center">
-        <div className="container h-16 w-full bg-white rounded-t-md">
+    <div className="w-full h-16 px-2 mt-2 mb-2">
+        <div className="container-lg h-16 w-full bg-white rounded-md shadow-md">
           <div className="flex w-full h-full items-center justify-between">
             <p className="ms-4 text-gray-700 text-lg italic">
               Upload your resume to get started.
@@ -14,7 +13,6 @@ function UploadResume() {
           </div>
         </div>
       </div>
-    </div>
   );
 }
 
