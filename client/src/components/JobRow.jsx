@@ -2,9 +2,9 @@
 function JobRow({ title, company, keywords }) {
   return (
     <div className="container h-24">
-      <div className="flex w-full h-full items-center justify-between border-b-2 border-b-gray-700">
-        <div className="container w-1/4 h-full">
-          <div className="flex flex-col h-full ms-2">
+      <div className="flex w-full h-full items-center justify-between border-b-4 border-b-gray-700">
+        <div className="container w-1/4 h-full border-e-2 border-e-gray-300">
+          <div className="flex flex-col-reverse h-full ms-2">
             <p className="text-xl font-bold truncate">{title}</p>
 
             <p className="text-sm text-gray-600 font-semibold">{company}</p>

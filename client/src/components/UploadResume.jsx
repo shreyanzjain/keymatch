@@ -8,14 +8,16 @@ function UploadResume() {
     setFile(e.target.files[0]);
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
     formData.append('file', file);
 
-    axios.put("http://127.0.0.1:8000/api/upload/resume", formData)
+    await axios.put("http://127.0.0.1:8000/api/upload/resume", formData)
     .then(resp => console.log(resp.data))
     .catch(err => console.log(err));
+
+    setFile(null);
   }
 
   return (
@@ -30,7 +32,7 @@ function UploadResume() {
                 <p className="text-gray-700 me-2 italic underline">{file ? file.name :'No file chosen.'}</p>
                 <label htmlFor="file-input" className="me-2 rounded-2xl px-4 py-1 bg-sky-950 border-2 border-sky-950 text-white hover:bg-white hover:text-sky-950 cursor-pointer">Select a file</label>
                 <input type="file" id="file-input" style={{display: "none"}} onChange={e => handleFileChange(e)} />
-                <button className="me-4 rounded-2xl px-4 py-1 bg-sky-950 border-2 border-sky-950 text-white hover:bg-white hover:text-sky-950 " type="submit" onClick={e => handleSubmit(e)}>Upload</button>
+                <button className="me-4 rounded-2xl px-4 py-1 bg-sky-950 border-2 border-sky-950 text-white hover:bg-white hover:text-sky-950 " type="submit" onClick={async e => await handleSubmit(e)}>Upload</button>
             </form>
           </div>
         </div>
