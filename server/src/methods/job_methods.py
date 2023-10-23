@@ -70,7 +70,7 @@ def extract_keywords_from_job_desc_text(text: str):
     for i in r.frequency_dist:
         keywords.add(i)
     
-    print(keywords)
+    # print(keywords)
     return keywords
 
 def extract_common_keywords(jobId: int, job_desc: str, resume_text: str, db: Session):
@@ -82,7 +82,7 @@ def extract_common_keywords(jobId: int, job_desc: str, resume_text: str, db: Ses
         if i in job_desc_keywords:
             extracted_keywords.add(i)
     
-    print(extracted_keywords)
+    # print(extracted_keywords)
     for i in extracted_keywords:
         common_keyword = models.Keywords(**schemas.KeywordCreate(keyword=i, job_id=jobId).model_dump())
         db.add(common_keyword)
